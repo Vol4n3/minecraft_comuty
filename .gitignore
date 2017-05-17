@@ -9,7 +9,6 @@ eula.txt
 start.sh
 logs
 playerdata
-data
 DIM1
 region
 stats
@@ -18,7 +17,7 @@ DIM-1
 advancements
 .oracle_jre_usage
 crash-reports
-level.dat
+*.dat
 level.dat_old
 usercache.json
 session.lock
