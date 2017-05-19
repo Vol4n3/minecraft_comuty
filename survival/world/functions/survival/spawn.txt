@@ -1,0 +1,3 @@
+/scoreboard players enable @a spawn
+/execute @a[score_spawn_min=1] ~ ~ ~ /tp @s 548 69 356 90 0
+/scoreboard players remove @a[score_spawn_min=1] spawn 1
