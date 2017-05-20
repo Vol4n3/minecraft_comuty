@@ -1,0 +1,2 @@
+# Livret d'accueil https://www.minecraftjson.com/
+{"command":"/give @p written_book 1 0 {pages:%s,title:Book,author:TellrawGenerator}","jobject":[{"text":"\\n===Livret d'accueil==","color":"gold","bold":true},{"text":"\\n"},{"text":"\\n"},{"text":"Appuyez pour être\\ntéléporter au Village.","color":"dark_aqua","italic":true,"clickEvent":{"action":"run_command","value":"/trigger spawn set 1"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"click","color":"aqua"}]}}}],"jtemplate":"book"}

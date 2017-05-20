@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+body{
+    font-family: 'Muli', sans-serif;
+    transition: opacity 3s;
+    -webkit-transition: opacity 3s;
+}
+.header{
+    background-color: #27282D;
+    color: white;
+    padding: 20px 0px;
+}
+.content{
+        min-height: 900px;
+        max-width: 1600px;
+        margin: 0 auto; 
+        padding: 30px;
+        background-color: lightgray;
+}
+.logo{
+    text-align: center;
+    padding-bottom: 20px; 
+}
+.logo h1{
+    margin-bottom:0; 
+}
+.logo i.fa::before{
+    font-size: 2.5em;
+    color: #bcb806;
+}
+
+.search_warp{
+    margin: 20px 0px;
+    width: 35%;
+    max-width:  700px;
+    min-width: 240px;
+    position: relative;
+    border: 1px solid #c0c0c0;
+}
+.search{
+    border: none;
+    padding: 13px 50px 13px 20px;
+    outline: 0;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.search::-moz-placeholder{
+    text-align: center;
+}
+.search::-webkit-input-placeholder{
+    text-align: center;
+}
+.search_submit{
+    position: absolute;
+    top: 30%;
+    right: 3%;
+}
+.footer{
+    background-color: #27282D;
+    color: white;
+    padding: 20px 0px;
+}
+#wysiwyg{
+    background: #fff;
+    height: 60px;
+}

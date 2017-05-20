@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        title Communauté | #{title}
+        block styles
+            link(rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css")
+            link(rel="stylesheet" type="text/css" href="/css/font-awesome.min.css")
+            link(rel="stylesheet" type="text/css" href="/css/jcv_style.css")
+            link(rel="stylesheet" type="text/css" href="/css/main.css")
+        block scripts
+            script(defer src="/socket.io/socket.io.js")
+            script(defer src="/js/clientApp.js")
+    body
+        block header
+            header.header
+                div.logo.box.center.y_center
+                    a(href="/")
+                        i.fa.fa-cubes.fa-3x(aria-hidden="true")
+                        h1 Minecraft Serveur Comuty
+                nav.box.center.y_center.multiline
+                    a.btn.white(href="/") Home
+                    a.btn.white(href="#") Boutique
+                    a.btn.white(href="mailto:jcvolan@gmail.com") Contact
+        block body
+            section
+                form#search_form.box.center(action="/" method="get")
+                    div.search_warp.shadow_box
+                        input.search(type="text" name="search" placeholder="Recherche")
+                        input.hide(type="submit" name="search_submit" id="search_submit")
+                        label.fa.fa-search.fa-lg.search_submit(aria-hidden="true" for="search_submit")
+
+        section.content
+            block content
+        
+        block footer
+            footer.footer
+                div.box.auto
+                    a(href="/").center_text A Propos
+                    a(href="/").center_text Contact
+                    a(href="/").center_text Term

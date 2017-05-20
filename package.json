@@ -1,0 +1,31 @@
+{
+  "name": "minecraft_comuty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vol4n3/minecraft_comuty.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vol4n3/minecraft_comuty/issues"
+  },
+  "homepage": "https://github.com/Vol4n3/minecraft_comuty#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express-socket.io-session": "^1.3.2",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.10.0",
+    "pug": "^2.0.0-rc.1",
+    "socket.io": "^2.0.1"
+  }
+}
