@@ -62,7 +62,7 @@ class Mc_server {
 
         if (!this.process) {
             this.process = proc.spawn("java",
-                ['-jar', '-Xmx1024M', '-Xms4096M', 'minecraft.jar', 'nogui'],
+                ['-jar', '-Xmx4096M', '-Xms1024M', 'minecraft.jar', 'nogui'],
                 { cwd: './' + this.name + '/' });
             this.process.stdout.setEncoding('utf8');
             this.process.stderr.setEncoding('utf8');
