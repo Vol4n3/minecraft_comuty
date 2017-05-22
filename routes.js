@@ -5,16 +5,37 @@ var path = require('path');
 var formidable = require('formidable');
 // GET /
 router.get('/', function (req, res, next) {
-        return res.render('home.pug', { title: "bonjour" });
+        return res.render('home.pug', { title: "Home" });
+});
+router.get('/admin/console', function (req, res, next) {
+        return res.render('home.pug', { title: "Home" });
 });
 router.get('/admin', function (req, res, next) {
-        return res.render('admin.pug', { title: "bonjour" });
+        return res.render('login_admin.pug', { title: "Authentification" });
+});
+router.post('/admin/console', function (req, res, next) {
+        if (req.body && req.body.pseudo == "volcraft" && req.body.pswd == "vtrank007")
+        {
+                return res.render('admin.pug', { title: "Admin" });
+        }
+        else
+        {
+                return res.render('home.pug', { title: "Mauvais pswd" });
+        }
 });
 router.post('/survival/structure', function (req, res, next) {
         var form = new formidable.IncomingForm();
         form.multiples = false;
         form.maxFieldsSize = 2 * 1024 * 1024;
         form.uploadDir = "./survival/world/structures/";
+        form.onPart = function (part) {
+                if (!part.filename || part.filename.match(/\.(nbt)$/i)) {
+                        this.handlePart(part);
+                }
+                else {
+                        console.log(part.filename + ' is not allowed');
+                }
+        }
         form.on('file', function (field, file) {
                 fs.rename(file.path, form.uploadDir + "/" + file.name);
         });

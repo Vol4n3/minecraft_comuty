@@ -1,0 +1,8 @@
+extends layout.pug
+append scripts
+    script(defer src="/js/clientApp.js")
+append content
+    form(action="/admin/console" method="post")
+        input(type="text" name="pseudo" placeholder="Votre identifiant" )
+        input(type="password" name="pswd" placeholder="Mot de passe" )
+        input(type="submit" name="submit" placeholder="valider" )

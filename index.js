@@ -59,6 +59,7 @@ class Mc_server {
         }
     }
     start() {
+
         if (!this.process) {
             this.process = proc.spawn("java",
                 ['-jar', '-Xmx1024M', '-Xms1024M', 'minecraft.jar', 'nogui'],
@@ -78,6 +79,9 @@ class Mc_server {
                     message: data
                 });
             });
+            this.process.on('exit', function (data) {
+                this.stop();
+            }.bind(this));
             return true;
         } else {
             return false;
@@ -85,7 +89,7 @@ class Mc_server {
     }
     stop() {
         if (this.process) {
-            survival_server.stdin.write("stop" + "\r");
+            this.process = null;
             return true;
         } else {
             return false;
@@ -115,6 +119,9 @@ io.on('connection', function (socket) {
             structures = res;
             socket.emit('structures', structures);
         });
-    })
+    });
+    socket.on('start_server', function (data) {
+        mc_servers[data.server_name].start();
+    });
 });
 

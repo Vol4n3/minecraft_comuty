@@ -70,7 +70,8 @@ body{
     justify-content: center;
 }
 #console{
-    background-color: #250505;
+    background-color: #050505;
     color:white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 0.8em;
+    font-family: monospace, Arial, sans-serif;
 }
