@@ -27,7 +27,7 @@
     }
     socket.on('stdout', function (data) {
         $console.append(newLine(data.message));
-          $console.animate({ scrollTop: $console.height() }, "slow");
+          $console.animate({ scrollTop: $console.prop("scrollHeight") }, "slow");
     });
     socket.on('structures', function (data) {
         listStructure(data);
