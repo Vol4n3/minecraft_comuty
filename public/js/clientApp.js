@@ -35,7 +35,7 @@
     $('#send-command').on('submit', function (e) {
         e.preventDefault();
         socket.emit('stdin', $('#command').val());
-        $('#send-command').val("")
+        $('#command').val("");
     });
     $('#send-structure').on('submit', function (e) {
         e.preventDefault();
