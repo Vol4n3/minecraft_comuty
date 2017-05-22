@@ -1,0 +1,15 @@
+extends layout.pug
+append scripts
+    script(defer src="/js/clientApp.js")
+append content
+    div.admin_panel
+        div.structures_block
+            ul#structures
+            form#send-structure
+                input#file_structure(type="file" name="upload")
+                input(type="submit" value="Envoyer")
+        div.console_block
+            div#console
+            form#send-command
+                input#command(type="text" placeholder="envoyer une commande")
+                input(type="submit" value="Valider")

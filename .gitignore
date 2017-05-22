@@ -22,3 +22,5 @@ level.dat_old
 usercache.json
 session.lock
 node_modules
+typings
+typings.json

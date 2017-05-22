@@ -65,3 +65,12 @@ body{
     background: #fff;
     height: 60px;
 }
+.admin_panel{
+    display: flex;
+    justify-content: center;
+}
+#console{
+    background-color: #250505;
+    color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

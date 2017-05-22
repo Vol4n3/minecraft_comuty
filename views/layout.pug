@@ -11,18 +11,18 @@ html
             link(rel="stylesheet" type="text/css" href="/css/main.css")
         block scripts
             script(defer src="/socket.io/socket.io.js")
-            script(defer src="/js/clientApp.js")
+            script(defer src="/js/jquery.js")
+
     body
         block header
             header.header
                 div.logo.box.center.y_center
-                    a(href="/")
-                        i.fa.fa-cubes.fa-3x(aria-hidden="true")
-                        h1 Minecraft Serveur Comuty
+                    i.fa.fa-cubes.fa-3x(aria-hidden="true")
+                    h1 Minecraft Serveur Comuty
                 nav.box.center.y_center.multiline
                     a.btn.white(href="/") Home
                     a.btn.white(href="#") Boutique
-                    a.btn.white(href="#") Administration
+                    a.btn.white(href="/admin") Administration
                     a.btn.white(href="mailto:jcvolan@gmail.com") Contact
         block body
             section
