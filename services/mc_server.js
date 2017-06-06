@@ -33,14 +33,19 @@ class Mc_server {
                         this.process.stdin.write('scoreboard players tag ' + cmd_find[2] + ' add ' + cmd_find[5] + '' + "\r");
                         this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' add ' + cmd_find[2] + '' + "\r");
                         this.process.stdin.write('scoreboard players set ' + cmd_find[2] + ' tpa 1' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[5] + ' tpa 1' + "\r");
                         this.process.stdin.write(tp_cmd + "\r");
                     } else if (cmd_find[4] == 'tpaccept') {
-                        this.process.stdin.write('tp @a[tag=' + cmd_find[2] + ',score_tpa_min=1] @a[tag=' + cmd_find[5] + ']' + "\r");
+                        this.process.stdin.write('tp @a[tag=' + cmd_find[2] + ',score_tpa_min=1] @a[tag=' + cmd_find[5] + ',score_tpa_min=1]' + "\r");
                         this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' remove ' + cmd_find[2] + '' + "\r");
                         this.process.stdin.write('scoreboard players tag ' + cmd_find[2] + ' remove ' + cmd_find[5] + '' + "\r");
                         this.process.stdin.write('scoreboard players set ' + cmd_find[5] + ' tpa 0' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[2] + ' tpa 0' + "\r");
                     } else if (cmd_find[4] == 'tpno') {
                         this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' remove ' + cmd_find[2] + '' + "\r");
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[2] + ' remove ' + cmd_find[5] + '' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[5] + ' tpa 0' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[2] + ' tpa 0' + "\r");
                     }
                 }
                 io.to('admin').emit('stdout', {
