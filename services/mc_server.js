@@ -22,28 +22,27 @@ class Mc_server {
             this.process.stderr.setEncoding('utf8');
             this.process.stdin.setEncoding('utf8');
             this.process.stdout.on('data', function (data) {
-                var tp_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.tp\s(.*?)\s/ig;
-                var tp_find = [];
-                while ((tp_find = tp_regex.exec(data)) !== null) {
-                    let tp_cmd = 'tellraw '+ tp_find[4] +' ["",{"text":"' +
-                        tp_find[2] + '","color":"aqua","bold":true,"underlined":true},{"text":" voudrait se téléporter à toi. ","color":"gold","bold":false,"underlined":false},{"text":"Accepter? ","color":"dark_green","bold":true,"clickEvent":{"action":"run_command","value":".tpaccept ' +
-                        tp_find[2] + '"}},{"text":"Ou ","color":"none","bold":false},{"text":"Refuser?","color":"red","italic":true,"clickEvent":{"action":"run_command","value":".tpno '+
-                        tp_find[2] +'"}}]';
-                    this.process.stdin.write('scoreboard players tag '+ tp_find[2] +' add '+ tp_find[4] +'' + "\r");
-                    this.process.stdin.write(tp_cmd + "\r");
+                var cmd_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.([^\s]+)\s([^!@\s]+)/ig;
+                var cmd_find = [];
+                while ((cmd_find = cmd_regex.exec(data)) !== null) {
+                    if (cmd_find[4] == 'tp') {
+                        let tp_cmd = 'tellraw ' + cmd_find[5] + ' ["",{"text":"' +
+                            cmd_find[2] + '","color":"aqua","bold":true,"underlined":true},{"text":" voudrait se téléporter à toi. ","color":"gold","bold":false,"underlined":false},{"text":"Accepter? ","color":"dark_green","bold":true,"clickEvent":{"action":"run_command","value":".tpaccept ' +
+                            cmd_find[2] + '"}},{"text":"Ou ","color":"none","bold":false},{"text":"Refuser?","color":"red","italic":true,"clickEvent":{"action":"run_command","value":".tpno ' +
+                            cmd_find[2] + '"}}]';
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[2] + ' add ' + cmd_find[5] + '' + "\r");
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' add ' + cmd_find[2] + '' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[2] + ' tpa 1' + "\r");
+                        this.process.stdin.write(tp_cmd + "\r");
+                    } else if (cmd_find[4] == 'tpaccept') {
+                        this.process.stdin.write('tp @a[tag=' + cmd_find[2] + ',score_tpa_min=1] @a[tag=' + cmd_find[5] + ']' + "\r");
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' remove ' + cmd_find[2] + '' + "\r");
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[2] + ' remove ' + cmd_find[5] + '' + "\r");
+                        this.process.stdin.write('scoreboard players set ' + cmd_find[5] + ' tpa 0' + "\r");
+                    } else if (cmd_find[4] == 'tpno') {
+                        this.process.stdin.write('scoreboard players tag ' + cmd_find[5] + ' remove ' + cmd_find[2] + '' + "\r");
+                    }
                 }
-                var tpa_find = [];
-                var tpa_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.tpaccept\s(.*?)\s/ig;
-                while ((tpa_find = tpa_regex.exec(data)) !== null) {
-                    this.process.stdin.write('tp @a[tag='+ tpa_find[2] +'] '+tpa_find[2]+'' + "\r");
-                    this.process.stdin.write('scoreboard players tag '+ tpa_find[4] +' remove '+ tpa_find[2] +'' + "\r");
-                }
-                var tpno_find = [];
-                var tpno_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.tpno\s(.*?)\s/ig;
-                while ((tpno_find = tpno_regex.exec(data)) !== null) {
-                    this.process.stdin.write('scoreboard players tag '+ tpno_find[4] +' remove '+ tpno_find[2] +'' + "\r");
-                }
-                tp_regex.exec(data);
                 io.to('admin').emit('stdout', {
                     server_name: this.name,
                     message: data
