@@ -22,7 +22,7 @@ class Mc_server {
             this.process.stderr.setEncoding('utf8');
             this.process.stdin.setEncoding('utf8');
             this.process.stdout.on('data', function (data) {
-                var cmd_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.([^\s]+)\s([^!@\s]+)/ig;
+                /*var cmd_regex = /^\[[0-9:]{8}]\s\[Server\sthread\/INFO\]:\s<(§.)?(.*?)(§.)?>\s\.([^\s]+)\s([^!@\s]+)/ig;
                 var cmd_find = [];
                 while ((cmd_find = cmd_regex.exec(data)) !== null) {
                     if (cmd_find[4] == 'tp') {
@@ -47,7 +47,7 @@ class Mc_server {
                         this.process.stdin.write('scoreboard players set ' + cmd_find[5] + ' tpa 0' + "\r");
                         this.process.stdin.write('scoreboard players set ' + cmd_find[2] + ' tpa 0' + "\r");
                     }
-                }
+                }*/
                 io.to('admin').emit('stdout', {
                     server_name: this.name,
                     message: data

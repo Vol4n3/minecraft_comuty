@@ -25,3 +25,11 @@ node_modules
 typings
 typings.json
 strutures
+Essentials
+PermissionsEx
+PluginMetrics
+Updater
+bukkit.yml
+commands.yml
+help.yml
+permissions.yml
