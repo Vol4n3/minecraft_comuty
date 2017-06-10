@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
-
+app.use('/stats/survival',express.static(__dirname + '/survival/world/stats'));
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 // include routes

@@ -5,13 +5,13 @@ var path = require('path');
 var formidable = require('formidable');
 // GET /
 router.get('/', function (req, res, next) {
-        return res.render('home.pug', { title: "Home" });
+        return res.render('home.pug', { title: "Accueil" });
 });
 router.get('/admin/console', function (req, res, next) {
-        return res.render('home.pug', { title: "Home" });
+        return res.render('home.pug', { title: "Console" });
 });
 router.get('/admin', function (req, res, next) {
-        return res.render('login_admin.pug', { title: "Authentification" });
+        return res.render('login_admin.pug', { title: "Login" });
 });
 router.post('/admin/console', function (req, res, next) {
         if (req.body && req.body.pseudo == "volcraft" && req.body.pswd == "vtrank007")
@@ -22,6 +22,9 @@ router.post('/admin/console', function (req, res, next) {
         {
                 return res.render('home.pug', { title: "Mauvais pswd" });
         }
+});
+router.get('/stats',function(req,res,next){
+        return res.render('stats.pug', { title: "Stats" });
 });
 router.post('/survival/structure', function (req, res, next) {
         var form = new formidable.IncomingForm();

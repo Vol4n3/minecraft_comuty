@@ -1,0 +1,12 @@
+extends layout.pug
+append scripts
+    script(defer src="/js/stats.js")
+append content
+    form#getStats(action="/stats/" method="get")
+        input(type="text" name="pseudo" placeholder="pseudo" )
+        input(type="text" list="servers" name="server" placeholder="Serveur")
+        datalist#server
+            option(value="survival") survival
+            option(value="skyblock") skyblock
+        input(type="submit" value="envoyer")
+    div#resultat
