@@ -6,6 +6,8 @@ class ioApp {
         this.structures = [];
         this.mc_servers = {};
         this.mc_servers['survival'] = new Mc_server('survival');
+        this.mc_servers['proxy'] = new Mc_server('proxy');
+        this.mc_servers['skyblock'] = new Mc_server('skyblock');
         this.io = io;
         this.getStructures();
         this.init();
@@ -14,7 +16,8 @@ class ioApp {
         this.io.on('connection', function (socket) {
             socket.join('admin');
             socket.on('stdin', function (data) {
-                this.mc_servers['survival'].send(data)
+                
+                this.mc_servers[data.server_name].send(data.cmd)
             }.bind(this));
             socket.emit('structures', this.structures);
             socket.on('update_structures', function () {

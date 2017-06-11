@@ -1,11 +1,9 @@
-server.properties
 ops.json
 .bash_history
 banned-players.json
 banned-ips.json
 whitelist.json
 minecraft.jar
-eula.txt
 start.sh
 logs
 playerdata
@@ -29,7 +27,9 @@ Essentials
 PermissionsEx
 PluginMetrics
 Updater
-bukkit.yml
 commands.yml
 help.yml
 permissions.yml
+cmd_*
+proxy.log*
+reconnect_yaml.jar
