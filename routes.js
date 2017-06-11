@@ -3,6 +3,9 @@ var router = express.Router();
 var fs = require('fs');
 var path = require('path');
 var formidable = require('formidable');
+var MojangAPI = require('mojang-api');
+
+
 // GET /
 router.get('/', function (req, res, next) {
         return res.render('home.pug', { title: "Accueil" });
@@ -14,17 +17,26 @@ router.get('/admin', function (req, res, next) {
         return res.render('login_admin.pug', { title: "Login" });
 });
 router.post('/admin/console', function (req, res, next) {
-        if (req.body && req.body.pseudo == "volcraft" && req.body.pswd == "vtrank007")
-        {
+        if (req.body && req.body.pseudo == "volcraft" && req.body.pswd == "vtrank007") {
                 return res.render('admin.pug', { title: "Admin" });
         }
-        else
-        {
+        else {
                 return res.render('home.pug', { title: "Mauvais pswd" });
         }
 });
-router.get('/stats',function(req,res,next){
+router.get('/stats', function (req, res, next) {
         return res.render('stats.pug', { title: "Stats" });
+});
+router.get('/mojang/username/:name', function (req, res, next) {
+        MojangAPI.nameToUuid(req.params.name, function (err, find) {
+                if (err) {
+                        res.status(403);
+                        res.json(err);
+                } {
+                        res.status(200);
+                        res.json(find);
+                }
+        });
 });
 router.post('/survival/structure', function (req, res, next) {
         var form = new formidable.IncomingForm();

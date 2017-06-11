@@ -13,15 +13,23 @@
     }
     formStats.addEventListener('submit', function (e) {
         e.preventDefault();
-        var xhr = new XMLHttpRequest();
         var server = this['server'].value;
-        xhr.open('get', 'https://api.mojang.com/users/profiles/minecraft/' + this['pseudo'].value);
-        xhr.responseType = "json";
-        xhr.send();
-        fetch('https://api.mojang.com/users/profiles/minecraft/' + this['pseudo'].value).then(find => {
-            let getId = find.id;
-            let uuid = getId.slice(0, 8) + '-' + getId.slice(8, 12) + '-' + getId.slice(12, 16) + '-' + getId.slice(16, 20) + '-' + getId.slice(20);
-            fetch('/stats/' + server + '/' + uuid + '.json').then(data => console.log(data))
-        });
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/mojang/username/' + this['pseudo'].value);
+            xhr.responseType = 'json';
+        xhr.send(null);
+        xhr.onload = function () {
+            let getId = xhr.response[0].id;
+            let uuid = getId.slice(0, 8)
+                + '-' + getId.slice(8, 12)
+                + '-' + getId.slice(12, 16)
+                + '-' + getId.slice(16, 20)
+                + '-' + getId.slice(20);
+            fetch('/stats/' + server + '/' + uuid + '.json').then(function (res) {
+                return res.json();
+            }).then(data => {
+                makeResult(data);
+            })
+        }
     });
 })();
