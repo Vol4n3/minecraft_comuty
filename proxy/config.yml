@@ -1,6 +1,19 @@
 ip_forward: true
 network_compression_threshold: 256
 stats: a1db2331-2d37-4384-9f25-88c26ded543c
+permissions:
+  default:
+  - bungeecord.command.server
+  - bungeecord.command.list
+  - bungeechat.global
+  - bungeechat.global.toggle
+  - bungeechat.msg
+  admin:
+  - bungeechat.mute
+  - bungeecord.command.alert
+  - bungeecord.command.end
+  - bungeecord.command.ip
+  - bungeecord.command.reload
 groups:
   Vol4n3:
   - admin
@@ -14,7 +27,6 @@ servers:
     address: localhost:25600
     restricted: false
 timeout: 30000
-player_limit: -1
 listeners:
 - query_port: 25565
   motd: '&2Mc.comuty.fr &3Survival &fand &6Skyblock'
@@ -31,19 +43,7 @@ listeners:
   ping_passthrough: false
   force_default_server: false
 prevent_proxy_connections: false
-permissions:
-  default:
-  - bungeecord.command.server
-  - bungeecord.command.list
-  - bungeechat.global
-  - bungeechat.global.toggle
-  - bungeechat.msg
-  admin:
-  - bungeechat.mute
-  - bungeecord.command.alert
-  - bungeecord.command.end
-  - bungeecord.command.ip
-  - bungeecord.command.reload
+player_limit: -1
 online_mode: true
 log_commands: false
 disabled_commands:

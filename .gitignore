@@ -33,3 +33,4 @@ permissions.yml
 cmd_*
 proxy.log*
 reconnect_yaml.jar
+userdata
